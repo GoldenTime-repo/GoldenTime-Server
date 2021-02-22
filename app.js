@@ -1,18 +1,21 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const logger = require("morgan");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const http = require("http");
-const socketIO = require("socket.io");
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const http = require('http');
+const socketIO = require('socket.io');
+
+const { sequelize } = require('./models');
 
 const app = express();
+sequelize.sync();
 const server = http.createServer(app);
 
 const corsOptions = {
-  origin: ["http://localhost:3000"],
-  methods: ["GET", "POST", "DELETE", "OPTIONS"],
+  origin: ['http://localhost:3000'],
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
   credential: true,
 };
 const { PORT, COOKIE_SECRET } = process.env;
@@ -21,7 +24,7 @@ const io = socketIO(server, {
 });
 
 app.use(cors(corsOptions));
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(COOKIE_SECRET));
@@ -34,12 +37,12 @@ app.use(
       httpOnly: true,
       secure: false,
       maxAge: 1000 * 60 * 60 * 24 * 7,
-      sameSite: "none",
+      sameSite: 'none',
     },
-  })
+  }),
 );
 
-io.on("connection", (socket) => {
+io.on('connection', (socket) => {
   console.log(`a user connected : ${socket.id}`);
 });
 
