@@ -10,6 +10,7 @@ const socketIO = require('socket.io');
 
 const { sequelize } = require('./models');
 const configPassport = require('./passport');
+const authRouter = require('./routes/auth');
 
 const app = express();
 sequelize.sync();
@@ -55,6 +56,8 @@ app.use(passport.session());
 io.on('connection', (socket) => {
   console.log(`a user connected : ${socket.id}`);
 });
+
+app.use('/auth', authRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
