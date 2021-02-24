@@ -1,4 +1,5 @@
 const local = require('./localStrategy');
+const jwt = require('./jwtStrategy');
 const { User } = require('../models');
 
 module.exports = (passport) => {
@@ -13,4 +14,5 @@ module.exports = (passport) => {
     });
   });
   local(passport);
+  jwt(passport);
 };
