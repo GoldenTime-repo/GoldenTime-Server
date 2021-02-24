@@ -12,6 +12,7 @@ const { sequelize } = require('./models');
 const configPassport = require('./passport');
 
 const app = express();
+sequelize.sync();
 const server = http.createServer(app);
 sequelize.sync();
 configPassport(passport);
