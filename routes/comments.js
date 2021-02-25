@@ -9,5 +9,10 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   commentControllers.comments.addComment,
 );
+router.patch(
+  '/modifiedcomment',
+  passport.authenticate('jwt', { session: false }),
+  commentControllers.comments.modifiedComment,
+);
 
 module.exports = router;
