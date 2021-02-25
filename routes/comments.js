@@ -14,5 +14,10 @@ router.patch(
   passport.authenticate('jwt', { session: false }),
   commentControllers.comments.modifiedComment,
 );
+router.delete(
+  '/deletecomment',
+  passport.authenticate('jwt', { session: false }),
+  commentControllers.comments.deleteComment,
+);
 
 module.exports = router;
