@@ -1,0 +1,1 @@
+exports.addComment = require('./addComment');
