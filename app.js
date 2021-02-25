@@ -12,6 +12,7 @@ const { sequelize } = require('./models');
 const configPassport = require('./passport');
 const authRouter = require('./routes/auth');
 const goodsRouter = require('./routes/goods');
+const commentsRouter = require('./routes/comments');
 
 const app = express();
 sequelize.sync();
@@ -60,6 +61,7 @@ io.on('connection', (socket) => {
 
 app.use('/auth', authRouter);
 app.use('/goods', goodsRouter);
+app.use('/comments', commentsRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
