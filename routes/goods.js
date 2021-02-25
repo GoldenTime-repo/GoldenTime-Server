@@ -19,5 +19,10 @@ router.patch(
   upload.any('img'),
   goodsController.goods.modifiedGoods,
 );
+router.post(
+  '/delete',
+  passport.authenticate('jwt', { session: false }),
+  goodsController.goods.deleteGoods,
+);
 
 module.exports = router;
