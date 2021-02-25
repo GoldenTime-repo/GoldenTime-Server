@@ -29,5 +29,10 @@ router.get(
   passport.authenticate('jwt', { session: false }),
   goodsController.goods.myGoods,
 );
+router.patch(
+  '/bidding',
+  passport.authenticate('jwt', { session: false }),
+  goodsController.goods.goodsBid,
+);
 
 module.exports = router;
