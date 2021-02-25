@@ -24,5 +24,10 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   goodsController.goods.deleteGoods,
 );
+router.get(
+  '/mygoods',
+  passport.authenticate('jwt', { session: false }),
+  goodsController.goods.myGoods,
+);
 
 module.exports = router;
