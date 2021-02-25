@@ -17,6 +17,10 @@ module.exports = async (req, res, next) => {
           id: commentId,
         },
         attributes: ['id', 'commentMessage', 'updatedAt'],
+        include: {
+          model: User,
+          attributes: ['id', 'nick', 'profileImage'],
+        },
       });
 
       res.status(200).json(commentInfo);
