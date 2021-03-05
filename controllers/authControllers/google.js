@@ -41,7 +41,12 @@ module.exports = async (req, res, next) => {
     );
     res
       .status(created ? 201 : 200)
-      .cookie('access_token', token)
+      .cookie('access_token', token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: 'none',
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+      })
       .json({ access_token: token });
   } catch (err) {
     next(err);

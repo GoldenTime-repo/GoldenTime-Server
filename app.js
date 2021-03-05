@@ -23,7 +23,7 @@ configPassport(passport);
 const corsOptions = {
   origin: ['http://localhost:3000'],
   methods: ['GET', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
-  credential: true,
+  credentials: true,
 };
 const { PORT, COOKIE_SECRET } = process.env;
 const io = socketIO(server, {
